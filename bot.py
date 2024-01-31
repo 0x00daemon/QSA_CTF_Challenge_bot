@@ -20,7 +20,9 @@ channel_id = None
 prevsolve=""
 TOKEN = None
 
-client = discord.Client()
+intents = discord.Intents.all()
+
+client = discord.Client(intents=intents)
 
 def team(teamname):
   global url,session_cookie
