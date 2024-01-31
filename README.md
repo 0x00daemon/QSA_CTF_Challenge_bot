@@ -88,6 +88,8 @@ The bot has an interactive Dashboard page, you have to log in with Discord and a
 12. **Test Run:**
    - Before using in a big event, test the bot on demo.ctfd.io with admin credentials.
 
+NOTE: ALL THE MESSAGES THAT ARE PRESENTED BY THE BOT CAN BE CUSTOMIZED IN THE ```bot.py``` FILE.
+
 ### Support
 
 If you need help deploying the bot for a CTF event, join the Discord channel: [https://discord.gg/unB3tzuS9b](https://discord.gg/unB3tzuS9b)
