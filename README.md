@@ -33,21 +33,57 @@ The bot has an interactive Dashboard page, you have to log in with Discord and a
 
 ## How to Use DisCTF:
 
-1. Clone the repository `git clone https://github.com/aravindha1234u/DisCTF`
-
+1. Clone the repository:
+   * ```bash
+     git clone https://github.com/0x00daemon/QSA_CTF_Challenge_bot
+     ```
+    
 2. Install the Requirements `pip3 install -r requirements.txt`
 
 3. Use your browser to login into CTFd and get admin session cookie and its URL path (Make sure you don't end the session)
+   * For this login to CTFd using admin user.
+   * Next, go to inspect and then the application tab and from the side menu select the cookie option to find the cookie information.
+   * Copy the cookie value.
 
 4. Enable [developer options](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-) in discord and copy the channel ID where you want the discord notifications
 
-5. Create a Discord bot and edit the `bot.py` file with token would be find at [Discord Developer](https://discord.com/developers/applications) ( How to create Bot account : [link](https://discordpy.readthedocs.io/en/latest/discord.html) )
+5. Create a Discord bot and edit the `bot.py` file with token would be find at [Discord Developer](https://discord.com/developers/applications) ( How to create Bot account : [link](https://discordpy.readthedocs.io/en/latest/discord.html))
+   * To create a discord bot visit the [Discord Developers portal](https://discord.com/developers/applications).
+   * Create a new application. Give it an appropriate name.
+   * Next from the side menu, click on bot section.
+   * In the Bot section click on reset token to receive your unique token.
 
-6. Start the bot to monitor the CTFd `python3 bot.py -s <session cookie> -u <url> -c <discord channel id>`
+6. Update the bot token in the bot.py file:
+   * Open the bot.py file and change the ```Token = None``` to ```Token = "<yourtoken>"```
 
-For adding DisCTF bot in your Discord Server use the link Below
+7. Start the bot to monitor the CTFd:
+   * ```bash
+     python3 bot.py -s <session cookie> -u <url> -c <discord channel id>
+     ```
+   * Replace the <session cookie> with the cookie value obtained from the 2nd step
+   * Replace the <url> with the url of your CTFd website.
+   * Replace the <discord channel id> with the channel ID obtained from the 4th step
+  
+For adding DisCTF bot in your Discord Server use the link Below:
 
-[https://discord.com/api/oauth2/authorize?client_id=772318209129840650&permissions=0&scope=bot](https://discord.com/api/oauth2/authorize?client_id=772318209129840650&permissions=0&scope=bot)
+https://discord.com/api/oauth2/authorize?client_id=<your_client_id>&permissions=<yourpermissionsreq>&scope=bot
+
+Here change the ```<your_client_id>``` with the client id of your bot which can be found in the side section ```OAuth2```.
+
+As for the ```<yourpermissionsreq>```, I will be using ```274877974528``` which is providing the bot message sending and reading old messages permissions but I believe you may be able to get away with just the message sending permission but since I haven't tested that so don't take my word on it. As for how I got this number for the permissions, go to the bot section and in the bottom you will find the permissions portion where you can select the permissions and it will give you the decimal presentaiton of those permissions.
+
+In the Bot section you will also need to enable the toggle options:
+* PRESENCE INTENT
+* SERVER MEMBERS INTENT
+* MESSAGE CONTENT INTENT
+
+Now you can update the link and visit that link in the browser to use the bot but before that now that we have everything ready lets run the server:
+
+
+
+Your updated link will look something like this:
+
+https://discord.com/api/oauth2/authorize?client_id=772318209129840650&permissions=274877974528&scope=bot
 
 Make sure to give proper premission for DisCTF bot with sending and receiving message for Full functioning of Bot.
 
