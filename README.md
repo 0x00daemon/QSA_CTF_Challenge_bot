@@ -90,11 +90,31 @@ The bot has an interactive Dashboard page, you have to log in with Discord and a
 
 NOTE: ALL THE MESSAGES THAT ARE PRESENTED BY THE BOT CAN BE CUSTOMIZED IN THE ```bot.py``` FILE.
 
+## Docker deployment 
+
+Build the Docker image:
+
+```bash
+sudo docker build -t your_bot_image .
+```
+
+Start the container with your configuration:
+
+```bash
+docker run -d \
+  -e SESSION_COOKIE=<your_cookie_here> \
+  -e URL=<your_url_here> \
+  -e DISCORD_CHANNEL_ID=<your_channel_id_here> \
+  your_bot_image
+```
+
+Remember to replace `<your_cookie_here>`, `<your_url_here>`, and `<your_channel_id_here>` with your specific information.
+
+These commands create and run a Docker container for your bot. Ensure that you customize the environment variables with your own data to enable proper functionality.
+
 ### Support
 
 If you need help deploying the bot for a CTF event, join the Discord channel: [https://discord.gg/unB3tzuS9b](https://discord.gg/unB3tzuS9b)
-
-For more information, visit: [https://disctf.live](https://disctf.live)
 
 ### License
 
