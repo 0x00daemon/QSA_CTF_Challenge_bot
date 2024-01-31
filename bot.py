@@ -88,7 +88,7 @@ def descchall(challname):
     category.append(i['category'])
     if i['name'].lower() == challname.lower():
       return {"name":i['name'],'points':i['value'],'type':i['type'],'category':i['category']}
-  
+
   if challname in category:
     challs=[]
     for i in data :
@@ -178,12 +178,12 @@ def position(user):
   }
   response = requests.get(url+"/api/v1/scoreboard", headers=headers, cookies=cookies,verify=False)
   data = response.json()['data']
-  
+
   for i in data:
     for j in i['members']:
       if j['name'] == user:
         return [i['pos'],i['score']]
-  
+
   return {"Error":"User not Found"}
 
 @client.event
@@ -192,21 +192,21 @@ async def on_ready():
   await client.change_presence(activity=discord.Game(name="Type /help for help"))
   await client.wait_until_ready()
   channel = client.get_channel(channel_id)
-  
+
   #Clear all history Message
   async with channel.typing():
     await channel.purge(limit=None)
-  
+
     print('{} is connected\n'.format(client.user))
     await client.get_channel(channel_id).send("""```bash
-  "Hey forks!, This is **DisCTF** who joined your channel. Bot will keep you updated on live scoreboard and Live valid submission and their respective rank with score of the player who solved the challenge recently. For More info and help Type /help."
-  ```""")  
-  
+  "Hey forks!, This is **QSA CTF** who joined your channel. Bot will keep you updated on live scoreboard and Live valid submission and their respective rank with score of the player who solved the challenge recently. For More info and help Type /help."
+  ```""")
+
   score = scoreboard()
-  em2 = discord.Embed(title="ScoreBoard",description=score,colour=0x080f5d)
+  em2 = discord.Embed(title="ScoreBoard",description=score,colour=0x61765B)
   message = await channel.send(embed=em2)
   await message.pin()
-  
+
   while 1:
     score=scoreboard()
     chall = challenge()
@@ -218,21 +218,21 @@ async def on_ready():
         pos,score=position(check[0])
         check = "**"+check[0]+"**"+" Has Solved Challenge "+"**"+chall[int(check[1])]+"**" +" (Current Rank: "+str(pos)+", Total score: "+str(score)+")" +" Solved at " + datetime.datetime.strptime(check[2],"%Y-%m-%dT%H:%M:%S.%f%z").strftime("%b %d %Y %H:%M:%S") #+ time.strftime("%H:%M:%S", time.localtime())
         channel = client.get_channel(channel_id)
-        em1 = discord.Embed(title="Kudos",description=check,colour=0x46befa)
+        em1 = discord.Embed(title="Kudos",description=check,colour=0x61765B)
         await channel.send(embed=em1)
-      
+
       hours, rem = divmod(time.time()-start_time, 3600)
       minutes, seconds = divmod(rem, 60)
 
       if minutes%1 == 0 and int(seconds)==0 and (seconds-int(seconds))<=1:
         channel = client.get_channel(channel_id)
-        em2 = discord.Embed(title="ScoreBoard",description=score,colour=0x080f5d)
+        em2 = discord.Embed(title="ScoreBoard",description=score,colour=0x61765B)
         message = await channel.send(embed=em2)
-        
+
         #Remove all pinned message and Add new one
         await channel.purge(limit=None,check=lambda msg: msg.pinned)
         await message.pin()
-        
+
     except Exception as e:
       #print(e)
       pass
@@ -248,10 +248,10 @@ async def on_message(message):
       if cmd[0].lower() == "help":
         embed=discord.Embed(
           title="Help",
-          description="DisCTF bot monitors real-time solves and submission, filters out valid ones, sends notifications on each solves with current rank and score of the person along with timestamp. We have a live scoreboard that notifies the people on interval of 1 minute with ranks of the top 20 players. It has custom commands to get information or detail from CTFd framework and notify with handly flost messages",
-          colour=0x46befa
+          description="QSA bot monitors real-time solves and submission, filters out valid ones, sends notifications on each solves with current rank and score of the person along with timestamp. We have a live scoreboard that notifies the people on interval of 1 minute with ranks of the top 20 players. It has custom commands to get information or detail from CTFd framework and notify with handly flost messages",
+          colour=0x61765B
           )
-        embed.set_author(name="DisCTF", url="https://disctf.live")
+        embed.set_author(name="QSA CTF", url="https://ctf.xdaem0n.com")
         embed.set_thumbnail(url="https://i.imgur.com/352sSJI.png")
         embed.add_field(name="/team teamname", value="Display Team with Members and team point ", inline=False)
         embed.add_field(name="/user username", value="Team rank with your individual contribution score ", inline=False)
@@ -262,13 +262,13 @@ async def on_message(message):
         embed.add_field(name="/challenge category", value="Challenge all under category", inline=True)
         embed.add_field(name="/author list", value="Return all list of challenge Authors ", inline=False)
         embed.add_field(name="/author Challenge_Name", value="Return Which Author for Respective Challenge ", inline=True)
-        embed.add_field(name="/author Author_name", value="Return list of challenge by Author ", inline=True) 
+        embed.add_field(name="/author Author_name", value="Return list of challenge by Author ", inline=True)
         await channel.send(embed=embed)
-      
+
       elif cmd[0].lower() == "author":
         authors = author()
         challs = [j for i in authors.values() for j in i]
-        
+
         try:
           if cmd[1].lower() == "list":#Return list of authors
             msg= "Here is the List of Authors \n\n"
@@ -283,7 +283,7 @@ async def on_message(message):
                 msg += str(i) + "\n"
               await channel.send(msg)
 
-            elif cmd[1].strip() in challs: #return author for author 
+            elif cmd[1].strip() in challs: #return author for author
               for auth,chall in authors.items():
                 if cmd[1].strip() in chall:
                   auth_id = auth
@@ -292,7 +292,7 @@ async def on_message(message):
 
             else:
               raise Exception
-          
+
         except:
           await channel.send("Challenge name or Author name Not Found")
 
@@ -332,7 +332,7 @@ async def on_message(message):
             await channel.send(embed=embed)
           else:
             await channel.send(chall['Error'])
-      
+
       elif cmd[0].lower() == "scoreboard":
         try:
           if cmd[1].lower() == "full":
@@ -343,7 +343,7 @@ async def on_message(message):
           score = scoreboard()
           em2 = discord.Embed(title="ScoreBoard",description=score,colour=0x080f5d)
           await channel.send(embed=em2)
-        
+
         #Remove all pinned message and Add new one
         await channel.purge(limit=None,check=lambda msg: msg.pinned)
         await message.pin()
@@ -357,7 +357,7 @@ async def on_message(message):
 
       else:
         await channel.send('Invalid command')
-  
+
 if __name__ == "__main__":
   if TOKEN == None:
     print("ERROR : Required Discord bot TOKEN")
@@ -368,14 +368,14 @@ if __name__ == "__main__":
   parser.add_argument("-u","--url",action='store',help="Takes CTFd platform URL",required=True)
   parser.add_argument("-c","--channel",action='store',help="Takes discord channel ID",required=True)
   args = parser.parse_args()
-  
+
   channel_id = int(args.channel)
   url = args.url
   if url[-1] == "/":
     url = "".join([i for i in url[:-1]])
 
   session_cookie = args.session
-  
+
   headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -386,10 +386,10 @@ if __name__ == "__main__":
   cookie =  {
     'session': str(session_cookie)
   }
-  
-  resp = requests.get(url+"/api/v1/users",headers=headers,cookies=cookie,verify=False)                    
+
+  resp = requests.get(url+"/api/v1/users",headers=headers,cookies=cookie,verify=False)
   if int(resp.status_code)!=200:
     print("ERROR : Either Session cookie is not correct or Does not have privilege as admin")
     exit()
-  
+
   client.run(TOKEN)
