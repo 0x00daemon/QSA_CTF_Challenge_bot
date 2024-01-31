@@ -33,72 +33,67 @@ The bot has an interactive Dashboard page, you have to log in with Discord and a
 
 ## How to Use DisCTF:
 
-1. Clone the repository:
-   * ```bash
-     git clone https://github.com/0x00daemon/QSA_CTF_Challenge_bot
-     ```
-    
-2. Install the Requirements `pip3 install -r requirements.txt`
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/0x00daemon/QSA_CTF_Challenge_bot
+   ```
 
-3. Use your browser to login into CTFd and get admin session cookie and its URL path (Make sure you don't end the session)
-   * For this login to CTFd using admin user.
-   * Next, go to inspect and then the application tab and from the side menu select the cookie option to find the cookie information.
-   * Copy the cookie value.
+2. **Install the Requirements:**
+   ```bash
+   pip3 install -r requirements.txt
+   ```
 
-4. Enable [developer options](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-) in discord and copy the channel ID where you want the discord notifications
+3. **Obtain CTFd Admin Session Cookie:**
+   - Log in to CTFd using the admin user.
+   - Open browser inspect, navigate to the application tab, and select the cookie option.
+   - Copy the admin session cookie value.
 
-5. Create a Discord bot and edit the `bot.py` file with token would be find at [Discord Developer](https://discord.com/developers/applications) ( How to create Bot account : [link](https://discordpy.readthedocs.io/en/latest/discord.html))
-   * To create a discord bot visit the [Discord Developers portal](https://discord.com/developers/applications).
-   * Create a new application. Give it an appropriate name.
-   * Next from the side menu, click on bot section.
-   * In the Bot section click on reset token to receive your unique token.
+4. **Get Discord Channel ID for Notifications:**
+   - Enable [developer options](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID/) in Discord.
+   - Copy the channel ID where you want to receive Discord notifications.
 
-6. Update the bot token in the bot.py file:
-   * Open the bot.py file and change the ```Token = None``` to ```Token = "<yourtoken>"```
+5. **Create and Configure Discord Bot:**
+   - Create a Discord bot at [Discord Developer](https://discord.com/developers/applications).
+   - Retrieve the bot token and update the `bot.py` file with the token.
 
-7. Start the bot to monitor the CTFd:
-   * ```bash
-     python3 bot.py -s <session cookie> -u <url> -c <discord channel id>
-     ```
-   * Replace the <session cookie> with the cookie value obtained from the 2nd step
-   * Replace the <url> with the url of your CTFd website.
-   * Replace the <discord channel id> with the channel ID obtained from the 4th step
-  
-For adding DisCTF bot in your Discord Server use the link Below:
+6. **Update Bot Token in `bot.py` File:**
+   - Open `bot.py` and change `Token = None` to `Token = "<yourtoken>"`.
 
-https://discord.com/api/oauth2/authorize?client_id=<your_client_id>&permissions=<yourpermissionsreq>&scope=bot
+7. **Start the Bot to Monitor CTFd:**
+   ```bash
+   python3 bot.py -s <session cookie> -u <url> -c <discord channel id>
+   ```
+   - Replace `<session cookie>` with the copied cookie value.
+   - Replace `<url>` with your CTFd website URL.
+   - Replace `<discord channel id>` with the copied channel ID.
 
-Here change the ```<your_client_id>``` with the client id of your bot which can be found in the side section ```OAuth2```.
+8. **Invite DisCTF Bot to Your Discord Server:**
+   Use the following link, replacing `<your_client_id>` and `<yourpermissionsreq>`:
+   ```
+   https://discord.com/api/oauth2/authorize?client_id=<your_client_id>&permissions=<yourpermissionsreq>&scope=bot
+   ```
+   - For permissions, use `274877974528` for message sending and reading old messages.
 
-As for the ```<yourpermissionsreq>```, I will be using ```274877974528``` which is providing the bot message sending and reading old messages permissions but I believe you may be able to get away with just the message sending permission but since I haven't tested that so don't take my word on it. As for how I got this number for the permissions, go to the bot section and in the bottom you will find the permissions portion where you can select the permissions and it will give you the decimal presentaiton of those permissions.
+9. **Enable Bot Permissions:**
+   - In the Discord Developer portal, enable presence intent, server members intent, and message content intent.
 
-In the Bot section you will also need to enable the toggle options:
-* PRESENCE INTENT
-* SERVER MEMBERS INTENT
-* MESSAGE CONTENT INTENT
+10. **Test and Confirm:**
+   - Once the bot joins your server, run the DisCTF server (Step 7).
+   - Confirm the bot is online, and in the selected channel, you should see the welcome message.
 
-Your updated link will look something like this:
+11. **Troubleshooting:**
+   - If you encounter errors like the Token error, ensure the token is wrapped in double quotations.
+   - Grant proper permissions for DisCTF bot for sending and receiving messages.
 
-https://discord.com/api/oauth2/authorize?client_id=772318209129840650&permissions=274877974528&scope=bot
-
-Go to your updated link in the browser, follow the questionaire to add the bot to the appropriate server and the bot will join your server.
-
-Once the bot joins your discord server you can run the disctf server now and the bot should be online indicating it worked and in the channel that was selected you should see the welcome message.
-
-To start the server use the step 7 guidance.
-
-If you encountar any errors like the Token error make sure the token is wrapped in double qoutations.
-
-Make sure to give proper premission for DisCTF bot with sending and receiving message for Full functioning of Bot.
-
-if you need to give a test run before using in your big event, you demo.ctfd.io with admin credentials. 
+12. **Test Run:**
+   - Before using in a big event, test the bot on demo.ctfd.io with admin credentials.
 
 ### Support
 
-In case, if you need help for deploying Bot for CTF event, you can join the discord chanenl with [https://discord.gg/unB3tzuS9b](https://discord.gg/unB3tzuS9b)
+If you need help deploying the bot for a CTF event, join the Discord channel: [https://discord.gg/unB3tzuS9b](https://discord.gg/unB3tzuS9b)
 
-For more info visit : [https://disctf.live](https://disctf.live)
+For more information, visit: [https://disctf.live](https://disctf.live)
 
 ### License
 
-**DisCTF** is licensed under [GPL v3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html)
+**DisCTF** is licensed under the [GPL v3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html).
