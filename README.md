@@ -77,13 +77,17 @@ In the Bot section you will also need to enable the toggle options:
 * SERVER MEMBERS INTENT
 * MESSAGE CONTENT INTENT
 
-Now you can update the link and visit that link in the browser to use the bot but before that now that we have everything ready lets run the server:
-
-
-
 Your updated link will look something like this:
 
 https://discord.com/api/oauth2/authorize?client_id=772318209129840650&permissions=274877974528&scope=bot
+
+Go to your updated link in the browser, follow the questionaire to add the bot to the appropriate server and the bot will join your server.
+
+Once the bot joins your discord server you can run the disctf server now and the bot should be online indicating it worked and in the channel that was selected you should see the welcome message.
+
+To start the server use the step 7 guidance.
+
+If you encountar any errors like the Token error make sure the token is wrapped in double qoutations.
 
 Make sure to give proper premission for DisCTF bot with sending and receiving message for Full functioning of Bot.
 
