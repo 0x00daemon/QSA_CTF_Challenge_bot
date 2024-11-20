@@ -35,7 +35,7 @@ The bot has an interactive Dashboard page, you have to log in with Discord and a
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/0x00daemon/QSA_CTF_Challenge_bot
+   git clone https://github.com/0x00daemon/ctf_bot
    ```
 
 2. **Install the Requirements:**
@@ -90,12 +90,15 @@ The bot has an interactive Dashboard page, you have to log in with Discord and a
 
 NOTE: ALL THE MESSAGES THAT ARE PRESENTED BY THE BOT CAN BE CUSTOMIZED IN THE ```bot.py``` FILE.
 
-## Docker deployment 
+## Docker deployment - Recommended
 
 Build the Docker image:
 
+- Include the token inside the bot.py file. Token can be created by logging into the CTFd as admin and generating a token from profile (make sure to adjust the date for the validation of the token).
+- Create a discord app/bot. Go to the bot section/tab and reset token to generate a token and enable all the intents options on the same page and add some cool icons and banners.
+
 ```bash
-sudo docker build -t your_bot_image .
+sudo docker build -t ctf_bot .
 ```
 
 Start the container with your configuration:
@@ -105,10 +108,19 @@ docker run -d \
   -e SESSION_COOKIE=<your_cookie_here> \
   -e URL=<your_url_here> \
   -e DISCORD_CHANNEL_ID=<your_channel_id_here> \
-  your_bot_image
+  ctf_bot
 ```
+- find the SESSION_COOKIE by logging into your ctfd platform (through admin account) and copy the cookie by going to inspect and then application tab and there you will find the cookie (this is on chrome).
+- for URL just put in the url for the ctf like https://ctf.google.com.
+- for the discord channel ID include the discord channel that you will be using for the ctf. Copy the channel id using: https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID
 
-Remember to replace `<your_cookie_here>`, `<your_url_here>`, and `<your_channel_id_here>` with your specific information.
+lastly don't forget to invite the bot to the discord server using the link:
+Use the following link, replacing `<your_client_id>` and `<yourpermissionsreq>`:
+   ```
+   https://discord.com/api/oauth2/authorize?client_id=<your_client_id>&permissions=<yourpermissionsreq>&scope=bot
+   ```
+   - For permissions, use `274877974528` for message sending and reading old messages.
+   - For client ID look in the discord app/bot, in the OAUTH tab.
 
 These commands create and run a Docker container for your bot. Ensure that you customize the environment variables with your own data to enable proper functionality.
 
