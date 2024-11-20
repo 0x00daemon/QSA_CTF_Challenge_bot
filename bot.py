@@ -18,7 +18,7 @@ pages=1
 session_cookie = None
 channel_id = None
 prevsolve=""
-TOKEN = None
+TOKEN = "Token_here"
 
 intents = discord.Intents.all()
 
@@ -240,8 +240,10 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+  if message.channel.id != channel_id:
+      return;
   channel = message.channel
-
+  
   if str(client.user) != str(message.author):
     if message.content.startswith('/'):
       cmd=message.content.replace("/","").split(" ",1)
