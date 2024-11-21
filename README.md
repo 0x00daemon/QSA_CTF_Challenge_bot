@@ -92,10 +92,9 @@ NOTE: ALL THE MESSAGES THAT ARE PRESENTED BY THE BOT CAN BE CUSTOMIZED IN THE ``
 
 ## Docker deployment - Recommended
 
-Build the Docker image:
+Before building the image:
 
-- Include the token inside the bot.py file. Token can be created by logging into the CTFd as admin and generating a token from profile (make sure to adjust the date for the validation of the token).
-- Create a discord app/bot. Go to the bot section/tab and reset token to generate a token and enable all the intents options on the same page and add some cool icons and banners.
+- Create a discord app/bot. Go to the bot section/tab and reset token to generate a token and enable all the intents options on the same page and add some cool icons and banners. Include the token inside the bot.py file.
 
 ```bash
 sudo docker build -t ctf_bot .
